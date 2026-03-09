@@ -24,6 +24,7 @@
     "express-rate-limit": "^8.3.0",
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.3",
-    "pg": "^8.20.0"
+    "pg": "^8.20.0",
+    "serverless-http": "^4.0.0"
   }
 }

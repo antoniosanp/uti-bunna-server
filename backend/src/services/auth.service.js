@@ -3,6 +3,7 @@ import * as userRepository from "../repositories/user.repository.js"
 import {hashPassword, verifyPassword} from "../utils/hash.js"
 import {generateToken} from "../utils/jwt.js"
 import {getRouteFromOSRM} from "../utils/route.js"
+import {AppError} from "../middlewares/AppError.js"
 
 export const register = async (userData) => {
   const { fullName, email, password, role, shift, phone, address, location } = userData
@@ -10,7 +11,7 @@ export const register = async (userData) => {
   const existingUser = await userRepository.findUserByEmail(email)
 
   if(existingUser.rowCount > 0){
-     throw new Error("User already exists")
+     throw new AppError("Email already registered", 409)
   }
 
   const hashedPassword = await hashPassword(password)
